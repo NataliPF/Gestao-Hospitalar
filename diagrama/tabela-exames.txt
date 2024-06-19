@@ -1,0 +1,8 @@
+CREATE TABLE tbl_exames (
+id_exames INT,
+id_prontuario INT,
+id_funcionario_exame INT,
+id_procedimento INT,
+data_solicitante DATETIME,
+
+);

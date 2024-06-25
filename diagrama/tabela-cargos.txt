@@ -1,4 +1,0 @@
-CREATE TABLE  tbl_cargos (
-id_cargo INT,
-descricao_cargo VARCHAR(50)
-);

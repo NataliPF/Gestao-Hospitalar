@@ -1,7 +1,0 @@
-CREATE TABLE tbl_exames (
-id_exames INT AUTO_INCREMENT PRIMARY KEY  ,
-id_prontuario INT FOREIGN KEY ,
-id_funcionario_exame INT FOREIGN KEY ,
-id_procedimento INT FOREIGN KEY,
-data_solicitante DATETIME
-);

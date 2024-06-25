@@ -1,4 +1,0 @@
-CREATE TABLE tbl_procedimentos (
-    id_tipo_procedimento INT,
-    descricao_procedimento VARCHAR(50)
-);

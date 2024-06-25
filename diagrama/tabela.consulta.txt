@@ -1,6 +1,0 @@
-CREATE TABLE tbl_consultas (
-    id_consulta INT,
-    id_prontuario INT,
-    id_funcionario_atendimento INT,
-    detalhes VARCHAR(255)
-);

@@ -1,7 +1,0 @@
-CREATE TABLE tbl_funcionarios (
-id_funcionari INT,
- nome VARCHAR(30),
-sobrenome VARCHAR(30),
-id_cargo INT,
-id_status INT
-);

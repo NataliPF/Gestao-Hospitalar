@@ -1,4 +1,0 @@
-CREATE TABLE tbl_prontuarios (
-    id_prontuario INT PRIMARY KEY AUTO_INCREMENT,
-    data_cadsatro DATETIME
-);

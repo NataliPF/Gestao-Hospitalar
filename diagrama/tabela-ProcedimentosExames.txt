@@ -1,4 +1,0 @@
-CREATE TABLE tbl_procedimentos_exames (
-id_procedimentos_exame INT,
-id_tipo_procedimento INT
-);

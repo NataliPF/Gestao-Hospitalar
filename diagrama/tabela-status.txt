@@ -1,0 +1,4 @@
+CREATE TABLE tbl_status (
+id_status INT, 
+descricao VARCHAR(20)
+);

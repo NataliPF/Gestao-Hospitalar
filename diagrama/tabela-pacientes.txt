@@ -1,5 +1,6 @@
 CREATE TABLE tbl_pacientes (
     id_paciente INT PRIMARY KEY AUTO_INCREMENT,
+    id_prontuario INT,
     nome VARCHAR(30),
     sobrenome VARCHAR(30),
     email VARCHAR(150),
@@ -9,6 +10,6 @@ CREATE TABLE tbl_pacientes (
     bairro VARCHAR(50),
     cidade VARCHAR(100),
     uf VARCHAR(2),
-    id_staus INT
+    id_status INT
 );
 

@@ -1,6 +1,6 @@
 <?php
 
-include_once("services/conexao.php");
+include_once("services/conexaoBanco.php");
 include_once("controller/controllerPacientes.php");
 include_once("model/modelPacientes.php");
 

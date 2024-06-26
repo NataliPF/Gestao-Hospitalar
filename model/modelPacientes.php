@@ -1,5 +1,3 @@
-<?php 
-
 <?php
 
 class modelPacientes{
@@ -35,6 +33,7 @@ class modelPacientes{
             return true;
 
         } catch (PDOException $e) {
+            echo $e;
             return false;
         }
     }

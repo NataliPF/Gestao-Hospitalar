@@ -1,41 +1,65 @@
-<?php
+<?php 
 
 class modelPacientes{
 
-    public function cadastrarPaciente($nome, $sobrenome, $email, $cep, $logradouro,
-                                        $numero, $bairro, $cidade, $uf){
-        try {
-            //$nome = filter_var($nome, FILTER_SANITIZE_STRING);
-            $nome = htmlspecialchars($nome, ENT_QUOTES);
-            $sobrenome = htmlspecialchars($sobrenome, ENT_QUOTES);
-            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-            $cep = filter_var($cep, FILTER_SANITIZE_NUMBER_INT);
-            $logradouro = htmlspecialchars($logradouro, ENT_QUOTES);
-            $numero = filter_var($numero, FILTER_SANITIZE_NUMBER_INT);
-            $bairro = htmlspecialchars($bairro, ENT_QUOTES);
-            $cidade = htmlspecialchars($cidade, ENT_QUOTES);
-            $uf = htmlspecialchars($uf, ENT_QUOTES);
-
+    public function listarPacientes(){
+        try{
             $pdo = Database::conexao();
-            $cadastrar = $pdo->prepare("CALL cadastrarPaciente(:nome, :sobrenome, :email, :cep,
-                                        :logradouro, :numero, :bairro, :cidade, :uf)");
-            $cadastrar->bindParam(":nome", $nome);
-            $cadastrar->bindParam(":sobrenome", $sobrenome);
-            $cadastrar->bindParam(":email", $email);
-            $cadastrar->bindParam(":cep", $cep);
-            $cadastrar->bindParam(":logradouro", $logradouro);
-            $cadastrar->bindParam(":numero", $numero);
-            $cadastrar->bindParam(":bairro", $bairro);
-            $cadastrar->bindParam(":cidade", $cidade);
-            $cadastrar->bindParam(":uf", $uf);
+            $consulta = $pdo->query("SELECT * FROM tbl_pacientes");
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultado;
+        } catch (PDOException $e){
+
+        }
+    }
+
+    
+    public function cadastrarPaciente($nome_paciente, $sobrenome_paciente, $email, $cep, $logradouro, $numero, $bairro, $cidade, $uf){
+        try{
+            $pdo = Database::conexao();
+            $cadastrar = $pdo->prepare("INSERT INTO tbl_pacientes(nome, sobrenome, email, cep, logradouro, numero, bairro, cidade, uf) VALUES(
+                                       :nome, :sobrenome, :email, :cep, :logradouro, :numero, :bairro, :cidade, :uf ) ");
+
+            $cadastrar->bindParam(':nome', $nome_paciente);
+            $cadastrar->bindParam(':sobrenome', $sobrenome_paciente);
+            $cadastrar->bindParam(':email', $email);
+            $cadastrar->bindParam(':cep', $cep);
+            $cadastrar->bindParam(':logradouro', $logradouro);
+            $cadastrar->bindParam(':numero', $numero);
+            $cadastrar->bindParam(':bairro', $bairro);
+            $cadastrar->bindParam(':cidade', $cidade);
+            $cadastrar->bindParam(':uf', $uf);
             $cadastrar->execute();
 
             return true;
+        } catch (PDOException $e){    
+            return false;
+        }
+    }
 
-        } catch (PDOException $e) {
-            echo $e;
+    public function atualizarPaciente($nome_paciente, $sobrenome_paciente, $email, $cep, $logradouro, $numero, $bairro, $cidade, $uf){
+        try{
+            $pdo = Database::conexao();
+            $atualizar = $pdo->prepare("UPDATE tbl_pacientes SET nome = :nome, sobrenome = :sobrenome, email = :email, cep = :cep, logradouro = :logradouro, 
+                                       numero = :numero, bairro = :bairro, cidade = :cidade, uf = :uf WHERE id_paciente = :id_paciente");
+
+            $atualizar->bindParam(":nome", $nome_paciente);
+            $atualizar->bindParam(":sobrenome", $sobrenome_paciente);
+            $atualizar->bindParam(":email", $email);
+            $atualizar->bindParam(":cep", $cep);
+            $atualizar->bindParam(":logradouro", $logradouro);
+            $atualizar->bindParam(":numero", $numero);
+            $atualizar->bindParam(":bairro", $bairro);
+            $atualizar->bindParam(":cidade", $cidade);
+            $atualizar->bindParam(":uf", $uf);
+            $atualizar->execute();
+
+            return true;
+        }catch(PDOException $e){
             return false;
         }
     }
 }
+
 ?>

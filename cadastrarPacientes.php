@@ -1,13 +1,13 @@
-<?php
+<?php 
 
 include_once("services/conexaoBanco.php");
 include_once("controller/controllerPacientes.php");
 include_once("model/modelPacientes.php");
 
-$data = json_decode(file_get_contents("php://input"), true);
+$data = json_decode(file_get_contents('php://input'),true);
 
-$nome = $data["nome"];
-$sobrenome = $data["sobrenome"];
+$nome_paciente = $data["nome"];
+$sobrenome_paciente = $data["sobrenome"];
 $email = $data["email"];
 $cep = $data["cep"];
 $logradouro = $data["logradouro"];
@@ -17,15 +17,14 @@ $cidade = $data["cidade"];
 $uf = $data["uf"];
 
 $controllerPacientes = new controllerPacientes();
-$resultado = $controllerPacientes->cadastrarPaciente($nome, $sobrenome, $email, $cep, $logradouro,
-                                                        $numero, $bairro, $cidade, $uf);
+$resultado = $controllerPacientes->cadastrarPaciente($nome_paciente, $sobrenome_paciente,$email,$cep,$logradouro,$numero,$bairro,$cidade,$uf);
 
-if($resultado) {
-    $msg = array("msg" => "Paciente cadastrado com sucesso.");
-    echo  json_encode($msg);
-} else {
-    $msg = array("msg" => "Erro ao cadastrar paciente.");
-    echo json_encode($msg);
-}
+if($resultado) echo "Paciente cadastrado com sucesso";
+
+
+
+
+
+
 
 ?>
